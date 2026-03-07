@@ -1,84 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Jashith Page</title>
+<meta charset="UTF-8">
+<title>Falling Flowers</title>
 
 <style>
 body{
-margin:0;
-font-family:Arial;
-background:linear-gradient(135deg,#0f0f0f,#1a1a1a);
-color:white;
-text-align:center;
-overflow-x:hidden;
+    margin:0;
+    background:black;
+    font-family:Arial;
+    color:white;
+    text-align:center;
+    overflow:hidden;
 }
 
 h1{
-font-size:70px;
-margin-top:40px;
-color:#ff2e63;
-text-shadow:0 0 20px #ff2e63,0 0 40px #ff2e63;
-animation: glow 2s infinite alternate;
-}
-
-@keyframes glow{
-from{ text-shadow:0 0 10px #ff2e63;}
-to{ text-shadow:0 0 40px #ff2e63;}
+    margin-top:20px;
 }
 
 .container{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:40px;
-margin-top:60px;
-padding-bottom:60px;
-}
-
-.card{
-background:#141414;
-border-radius:20px;
-padding:20px;
-box-shadow:0 0 25px rgba(0,0,0,0.8);
-transition:0.4s;
-}
-
-.card:hover{
-transform:scale(1.08);
-box-shadow:0 0 40px #ff2e63;
+    position:relative;
+    z-index:2;
 }
 
 img{
-width:320px;
-border-radius:15px;
+    width:350px;
+    margin:20px;
+    border-radius:12px;
+    box-shadow:0 0 20px pink;
 }
 
-.caption{
-margin-top:15px;
-font-size:30px;
-color:#ff2e63;
+.flower{
+    position:fixed;
+    top:-50px;
+    font-size:28px;
+    pointer-events:none;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    0%{
+        transform:translateY(-50px) rotateX(0deg) rotateY(0deg);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(110vh) rotateX(720deg) rotateY(720deg);
+        opacity:0.8;
+    }
 }
 </style>
-
 </head>
 
 <body>
 
-<h1>JASHITH EWWWW 🤢</h1>
-
 <div class="container">
+<h1>🌸 Falling Flowers 🌸</h1>
 
-<div class="card">
-<img src="photo1.jpg">
-<div class="caption">jashith ewwww</div>
-</div>
-
-<div class="card">
-<img src="photo2.jpg">
-<div class="caption">jashith ewwww</div>
-</div>
+<img src="https://i.imgur.com/Fr0czWg.jpeg">
+<br>
+<img src="https://i.imgur.com/ulSLhDy.jpeg">
 
 </div>
+
+<script>
+function createFlower(){
+    const flower=document.createElement("div");
+    flower.className="flower";
+    flower.innerHTML="🌸";
+
+    flower.style.left=Math.random()*100+"vw";
+    flower.style.animationDuration=(4+Math.random()*4)+"s";
+
+    document.body.appendChild(flower);
+
+    setTimeout(()=>{
+        flower.remove();
+    },8000);
+}
+
+setInterval(createFlower,200);
+</script>
 
 </body>
 </html>
