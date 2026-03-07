@@ -3,7 +3,7 @@ const logs = [
 
 ]
 
-let i = 0
+let i = 1
 
 setInterval(()=>{
 document.getElementById("logs").innerHTML += "<br>"+logs[i]
@@ -14,4 +14,4 @@ if(i>=logs.length){
 i=0
 }
 
-},2)
+},10000)
