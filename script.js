@@ -3,7 +3,7 @@ const logs = [
 
 ]
 
-let i = 1
+let i = 0
 
 setInterval(()=>{
 document.getElementById("logs").innerHTML += "<br>"+logs[i]
