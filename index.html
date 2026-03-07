@@ -3,83 +3,98 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Premium UI</title>
+<title>Token Submission</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
+font-family: "Segoe UI", Arial, sans-serif;
 }
 
 body{
 height:100vh;
 display:flex;
-align-items:center;
 justify-content:center;
-background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+align-items:center;
+background: linear-gradient(120deg,#000000,#ffffff);
 }
 
-/* Glass card */
-.container{
-background: rgba(255,255,255,0.08);
-backdrop-filter: blur(15px);
+/* Main card */
+
+.panel{
+background:white;
 padding:40px;
-border-radius:15px;
-width:350px;
-text-align:center;
-box-shadow:0 0 30px rgba(0,0,0,0.5);
-border:1px solid rgba(255,255,255,0.15);
+width:380px;
+border-radius:10px;
+box-shadow:0 15px 40px rgba(0,0,0,0.3);
 }
+
+/* Title */
 
 h1{
-color:white;
-margin-bottom:25px;
-font-weight:600;
+font-size:22px;
+margin-bottom:8px;
+color:#111;
 }
 
-/* Input box */
+.subtitle{
+font-size:13px;
+color:#555;
+margin-bottom:25px;
+}
+
+/* Input */
+
 input{
 width:100%;
 padding:12px;
-border:none;
-border-radius:8px;
-outline:none;
+border:1px solid #ccc;
+border-radius:6px;
+font-size:14px;
 margin-bottom:20px;
-background:rgba(255,255,255,0.1);
-color:white;
-font-size:15px;
+outline:none;
+transition:0.2s;
+}
+
+input:focus{
+border-color:black;
+box-shadow:0 0 0 2px rgba(0,0,0,0.1);
 }
 
 /* Button */
+
 button{
 width:100%;
 padding:12px;
-border:none;
-border-radius:8px;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
+background:black;
 color:white;
-background: linear-gradient(45deg,#ff416c,#ff4b2b);
-transition:0.3s;
+border:none;
+border-radius:6px;
+font-size:15px;
+font-weight:600;
+cursor:pointer;
+transition:0.25s;
 }
 
-/* Button animation */
 button:hover{
-transform:translateY(-3px) scale(1.03);
-box-shadow:0 10px 20px rgba(0,0,0,0.4);
+background:#222;
+transform:translateY(-1px);
 }
 
 button:active{
-transform:scale(0.96);
+transform:scale(0.98);
 }
 
+/* Footer */
+
 .footer{
-margin-top:15px;
-font-size:12px;
-color:rgba(255,255,255,0.6);
+margin-top:18px;
+font-size:11px;
+color:#777;
+text-align:center;
 }
 
 </style>
@@ -87,15 +102,17 @@ color:rgba(255,255,255,0.6);
 
 <body>
 
-<div class="container">
-<h1>Premium Panel</h1>
+<div class="panel">
 
-<input type="text" placeholder="Paste biscuit here...">
+<h1>Submit Token</h1>
+<div class="subtitle">Enter your token below to continue.</div>
 
-<button>Paste Biscuit Here</button>
+<input type="text" placeholder="Paste token here">
+
+<button>Submit Token</button>
 
 <div class="footer">
-Secure Access Panel
+Secure verification portal
 </div>
 
 </div>
