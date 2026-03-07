@@ -1,9 +1,6 @@
 const logs = [
-"Connecting to server...",
-"Bypassing firewall...",
-"Access granted...",
-"Loading modules...",
-"System ready."
+"FUCK BRAVE...",
+
 ]
 
 let i = 0
@@ -17,4 +14,4 @@ if(i>=logs.length){
 i=0
 }
 
-},2000)
+},2)
