@@ -1,62 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Jashith Page</title>
 
-<title>Premium Dashboard</title>
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#0f0f0f,#1a1a1a);
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
 
-<link rel="stylesheet" href="style.css">
+h1{
+font-size:70px;
+margin-top:40px;
+color:#ff2e63;
+text-shadow:0 0 20px #ff2e63,0 0 40px #ff2e63;
+animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{ text-shadow:0 0 10px #ff2e63;}
+to{ text-shadow:0 0 40px #ff2e63;}
+}
+
+.container{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:40px;
+margin-top:60px;
+padding-bottom:60px;
+}
+
+.card{
+background:#141414;
+border-radius:20px;
+padding:20px;
+box-shadow:0 0 25px rgba(0,0,0,0.8);
+transition:0.4s;
+}
+
+.card:hover{
+transform:scale(1.08);
+box-shadow:0 0 40px #ff2e63;
+}
+
+img{
+width:320px;
+border-radius:15px;
+}
+
+.caption{
+margin-top:15px;
+font-size:30px;
+color:#ff2e63;
+}
+</style>
 
 </head>
 
 <body>
 
-<div class="overlay"></div>
+<h1>JASHITH EWWWW 🤢</h1>
 
 <div class="container">
 
-<h1 class="title">JASHITH NIGGER</h1>
-<p class="subtitle">PREMIUM BYPASSER</p>
-
-<div class="panel">
-
-<h3>INITIATE PROCESS</h3>
-
-<input placeholder="RBLX.SECURITY">
-<input type="password" placeholder="Security Key">
-
-<button class="start"> START</button>
-
+<div class="card">
+<img src="photo1.jpg">
+<div class="caption">jashith ewwww</div>
 </div>
 
-<div class="panel">
-
-<h3>SYSTEM STATUS</h3>
-
-<div class="status">
-<span>Mainframe</span>
-<span class="red">ONLINE</span>
-</div>
-
-<div class="status">
-<span>Override Module</span>
-<span class="red">ACTIVE</span>
+<div class="card">
+<img src="photo2.jpg">
+<div class="caption">jashith ewwww</div>
 </div>
 
 </div>
-
-<div class="panel logs">
-
-<h3>OPERATION LOGS</h3>
-
-<div id="logs">
-Initializing system...
-</div>
-
-</div>
-
-</div>
-
-<script src="script.js"></script>
 
 </body>
 </html>
