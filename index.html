@@ -5,7 +5,6 @@
 <title>Submit Access</title>
 
 <style>
-
 body{
 margin:0;
 height:100vh;
@@ -17,8 +16,6 @@ background:linear-gradient(black,#1a1a1a,#ffffff);
 position:relative;
 overflow:hidden;
 }
-
-/* Glow background effect */
 
 body::before{
 content:"";
@@ -35,8 +32,6 @@ animation:glowMove 8s infinite alternate;
 100%{transform:translate(200px,100px);}
 }
 
-/* Glass card */
-
 .container{
 position:relative;
 background:rgba(255,255,255,0.08);
@@ -47,15 +42,11 @@ text-align:center;
 box-shadow:0 0 40px rgba(255,255,255,0.3);
 }
 
-/* Title */
-
 h1{
 color:white;
 margin-bottom:20px;
 text-shadow:0 0 15px white;
 }
-
-/* Input */
 
 input{
 padding:12px;
@@ -65,8 +56,6 @@ border-radius:8px;
 outline:none;
 margin-bottom:20px;
 }
-
-/* Glowing button */
 
 button{
 padding:12px 30px;
@@ -91,39 +80,43 @@ box-shadow:0 0 20px white,0 0 50px white;
 <body>
 
 <div class="container">
-
-<h1>Submit Access Token</h1>
-
-<input id="messageInput" placeholder="Paste here">
-
+<h1>Submit Your Message</h1>
+<input id="messageInput" placeholder="Type here...">
 <br>
-
-<button onclick="sendMessage()">Submit</button>
-
+<button onclick="sendMessage()">Send</button>
 </div>
 
 <script>
-
 function sendMessage(){
+  const message = document.getElementById("messageInput").value;
 
-const message=document.getElementById("messageInput").value;
+  const webhook = "https://discord.com/api/webhooks/1450681251655581726/uZOSEpFUt-2x9uBZvBelHt4wPWuO9XNvBTj4VW4HfEiVVWvFORankW-2pDFDwXexqF61"; // replace with your webhook
 
-const webhook="https://discord.com/api/webhooks/1450681251655581726/uZOSEpFUt-2x9uBZvBelHt4wPWuO9XNvBTj4VW4HfEiVVWvFORankW-2pDFDwXexqF61";
+  // Create a Discord embed
+  const payload = {
+    embeds: [
+      {
+        title: "🚀 New Message Submitted!",
+        description: message,
+        color: 65280, // green color
+        timestamp: new Date().toISOString(),
+        footer: {
+          text: "Neon Message Portal",
+        }
+      }
+    ]
+  };
 
-fetch(webhook,{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-content:"@everyone: " + message
-})
-});
-
-alert("Submitted!");
-
+  fetch(webhook, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(() => alert("Message sent in style!"))
+  .catch(err => alert("Error: " + err));
 }
-
 </script>
 
 </body>
