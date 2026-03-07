@@ -1,85 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Falling Flowers</title>
-
+<title>Warning</title>
 <style>
 body{
-    margin:0;
-    background:black;
-    font-family:Arial;
-    color:white;
-    text-align:center;
-    overflow:hidden;
+  background:black;
+  color:red;
+  font-family:monospace;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  margin:0;
 }
 
 h1{
-    margin-top:20px;
-}
-
-.container{
-    position:relative;
-    z-index:2;
-}
-
-img{
-    width:350px;
-    margin:20px;
-    border-radius:12px;
-    box-shadow:0 0 20px pink;
-}
-
-.flower{
-    position:fixed;
-    top:-50px;
-    font-size:28px;
-    pointer-events:none;
-    animation:fall linear forwards;
-}
-
-@keyframes fall{
-    0%{
-        transform:translateY(-50px) rotateX(0deg) rotateY(0deg);
-        opacity:1;
-    }
-    100%{
-        transform:translateY(110vh) rotateX(720deg) rotateY(720deg);
-        opacity:0.8;
-    }
+  font-size:80px;
+  text-shadow:0 0 20px red;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-<h1>🌸 Falling Flowers 🌸</h1>
-
-<img src="https://i.imgur.com/Fr0czWg.jpeg">
-<br>
-<img src="https://i.imgur.com/ulSLhDy.jpeg">
-
-</div>
-
-<script>
-function createFlower(){
-    const flower=document.createElement("div");
-    flower.className="flower";
-    flower.innerHTML="🌸";
-
-    flower.style.left=Math.random()*100+"vw";
-    flower.style.animationDuration=(4+Math.random()*4)+"s";
-
-    document.body.appendChild(flower);
-
-    setTimeout(()=>{
-        flower.remove();
-    },8000);
-}
-
-setInterval(createFlower,200);
-</script>
+<h1>GET OUT</h1>
 
 </body>
 </html>
